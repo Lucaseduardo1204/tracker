@@ -1,0 +1,6 @@
+- Receita (entrada de grana) + extrair classe-pai Lançamento quando ela nascer
+- Usuario com login (email/senha) → M3, Spring Security
+- parcela / recorrente / numeroParcela (parcelamento)
+- Validação de datas retroativas (limite de quão antigo)
+- try-catch pra data inválida no parse (31/02, texto zoado, vazio)
+- Menu numérico pros enums (1-ALIMENTACAO...) pra minimizar erro de digitação

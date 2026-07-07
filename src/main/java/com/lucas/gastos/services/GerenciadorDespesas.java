@@ -14,12 +14,18 @@ public class GerenciadorDespesas {
         despesas.add(d);
     }
 
+    //passa uma cópia de nossa lista para que ela não seja alterada
     public List<Despesa> listar() {
         return new ArrayList<>(despesas);
     }
 
-    public void remover(Despesa despesa){
-        despesas.remove(despesa);
+    public void remover(int despesa){
+        if (despesa >= 0 && despesa < despesas.size()){
+            despesas.remove(despesa - 1);
+        } else {
+            System.out.println("Valor inválido");
+        }
+
     }
 
 
