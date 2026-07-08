@@ -1,17 +1,21 @@
 package com.lucas.gastos.services;
 
 import com.lucas.gastos.model.entities.Despesa;
+import com.lucas.gastos.repository.DespesaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorDespesas {
 
+    DespesaRepository repository = new DespesaRepository();
+
     private List<Despesa> despesas = new ArrayList<>();
 
 
     public void adicionarDespesa(Despesa d){
         despesas.add(d);
+        repository.salvar(despesas);
     }
 
     //passa uma cópia de nossa lista para que ela não seja alterada

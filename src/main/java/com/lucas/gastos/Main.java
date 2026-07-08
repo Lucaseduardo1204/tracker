@@ -4,6 +4,7 @@ import com.lucas.gastos.model.entities.Despesa;
 import com.lucas.gastos.model.enums.BancoEnum;
 import com.lucas.gastos.model.enums.CategoriaEnum;
 import com.lucas.gastos.model.enums.FormaPagamentoEnum;
+import com.lucas.gastos.repository.DespesaRepository;
 import com.lucas.gastos.services.GerenciadorDespesas;
 
 import java.math.BigDecimal;
