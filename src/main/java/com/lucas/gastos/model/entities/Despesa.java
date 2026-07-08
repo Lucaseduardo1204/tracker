@@ -24,6 +24,10 @@ public class Despesa {
         // igual a null, já fazendo que ela seja criada de maneira incorreta. Se existe dados incorretos, nulos ou errados, então o objeto não deve existir
         // Com o throw new IllegalArgumentsException, lança a exceção de argumento ilegal indicando que o valor não pode ser negativo
         // Aqui é checkado o erro e não o acerto
+        if (valor == null){
+            throw new IllegalArgumentException("Valor n~ao deve ser nulo");
+        }
+
         if (valor.signum() == -1) {
             throw new IllegalArgumentException("Valor não pode ser negativo");
         }
@@ -36,11 +40,12 @@ public class Despesa {
         if(data == null){
             throw new IllegalArgumentException("Data deve ser válida");
         }
-        this.data = data;
 
         if (data.isAfter(LocalDate.now())){
             throw new IllegalArgumentException("Data não pode ser futura!");
         }
+
+        this.data = data;
 
         this.categoria = categoria;
         this.descricao = descricao;

@@ -49,7 +49,7 @@ public class Main {
                     break;
 
             }
-        }while(resposta == true);
+        }while(resposta);
 
 
         /*Teste do equals e hashcode
@@ -59,7 +59,7 @@ public class Main {
 
         Set<Despesa> conjunto = new HashSet<>();
         conjunto.add(d1);
-        conjunto.add(d1);
+        conjunto.add(d2);
 
         System.out.println("Tamanho do set: " + conjunto.size());  --Imprimiu 1, no caso, reconheceu que d1 e d2 s~ao a mesma e descartou a duplicata*/
 
@@ -73,7 +73,7 @@ public class Main {
 
         System.out.println("Digite a Data da despesa (dd/MM/yyyy): ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(sc.nextLine(), formatter); // só pra representar
+        LocalDate data = LocalDate.parse(sc.nextLine(), formatter);
 
         System.out.println("Digite a categoria da despesa: ");
         // variavel categoria do tipo CategoriaEnum, Categoria enum pega o valor que é passado no parâmetro, ou seja, o

@@ -20,8 +20,9 @@ public class GerenciadorDespesas {
     }
 
     public void remover(int despesa){
-        if (despesa >= 0 && despesa < despesas.size()){
-            despesas.remove(despesa - 1);
+        int indice = despesa -1;
+        if (indice >= 0 && indice < despesas.size()){
+            despesas.remove(indice);
         } else {
             System.out.println("Valor inválido");
         }
