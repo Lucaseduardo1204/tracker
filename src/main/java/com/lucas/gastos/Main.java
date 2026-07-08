@@ -9,7 +9,9 @@ import com.lucas.gastos.services.GerenciadorDespesas;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -48,6 +50,18 @@ public class Main {
 
             }
         }while(resposta == true);
+
+
+        /*Teste do equals e hashcode
+
+        Despesa d1 = new Despesa(new BigDecimal("50"), LocalDate.of(2026, 7, 7), CategoriaEnum.ALIMENTACAO, "almoço", FormaPagamentoEnum.CREDITO, BancoEnum.NUBANK);
+        Despesa d2 = new Despesa(new BigDecimal("50"), LocalDate.of(2026, 7, 7), CategoriaEnum.ALIMENTACAO, "almoço", FormaPagamentoEnum.CREDITO, BancoEnum.NUBANK);
+
+        Set<Despesa> conjunto = new HashSet<>();
+        conjunto.add(d1);
+        conjunto.add(d1);
+
+        System.out.println("Tamanho do set: " + conjunto.size());  --Imprimiu 1, no caso, reconheceu que d1 e d2 s~ao a mesma e descartou a duplicata*/
 
     }
 
@@ -93,14 +107,3 @@ public class Main {
 
 }
 
-// Anotações:
-/*
-*  == compara o endereço e não o conteúdo.Ou seja, se  implementar, duas despesas idênticas (mesmo valor, mesma
-*  data, mesma categoria) são consideradas diferentes, porque são dois objetos distintos na memória.
-*
-*  .equals() = o conteúdo é equivalente? valem a mesma coisa?. É aqui que VOCÊ entra decidindo o que "equivalente" significa pro teu objeto.
-    *
-*
-*
-*
-* */
