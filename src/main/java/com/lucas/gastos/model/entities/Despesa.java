@@ -79,12 +79,12 @@ public class Despesa {
 
     @Override
     public String toString(){
-        return "Valor: " + getValor()
+        return "\nValor: " + getValor()
                 +  "\nData: " + getData()
                 +  "\nCategoria: " + getCategoria()
                 +  "\nDescrição: " + getDescricao()
                 +  "\nForma de pagamento: " + getFormaPagamento()
-                +  "\nBanco: " + getBanco();
+                +  "\nBanco: " + getBanco() + "\n";
     }
 
 

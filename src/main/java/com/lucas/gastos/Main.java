@@ -19,6 +19,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         GerenciadorDespesas gerenciador = new GerenciadorDespesas();
 
+        DespesaRepository carregarTeste = new DespesaRepository();
+
+        carregarTeste.carregar();
+
         boolean resposta = true;
 
         do {
@@ -77,6 +81,7 @@ public class Main {
         LocalDate data = LocalDate.parse(sc.nextLine(), formatter);
 
         System.out.println("Digite a categoria da despesa: ");
+
         // variavel categoria do tipo CategoriaEnum, Categoria enum pega o valor que é passado no parâmetro, ou seja, o
         // scanner lê a próxima linha, joga tudo pra maiúsculo como tratamento, e joga pro valor da CategoriaEnum, o qual
         // vai ser armazenado na variável, outra maneira de se fazer isso é atravéz de um menu de numeros inteiros onde
