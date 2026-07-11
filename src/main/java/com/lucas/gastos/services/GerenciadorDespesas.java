@@ -8,9 +8,14 @@ import java.util.List;
 
 public class GerenciadorDespesas {
 
-    DespesaRepository repository = new DespesaRepository();
+
+    private DespesaRepository repository = new DespesaRepository();
 
     private List<Despesa> despesas = new ArrayList<>();
+
+    public GerenciadorDespesas(){  //Gerenciador nasce, pede pro repositório e guarda a resposta na lista de despesas
+        this.despesas = repository.carregar();
+    }
 
 
     public void adicionarDespesa(Despesa d){

@@ -16,6 +16,7 @@ import static com.lucas.gastos.Main.criarDespesa;
 
 public class DespesaRepository {
 
+
     //Aqui eu preciso carregar o arquivo, ler a primeira linha, separar campo por campo, atribuir uma nova despesa com os
     //campos carregados do arquivo retornar a lista com as despesas carregadas
 
@@ -29,7 +30,7 @@ public class DespesaRepository {
 
             String linha; //declara linha como string
 
-            //Enquanto a linha, tiver conteudo, vai executar
+            //Enquanto não chegar no fim do arquivo
             while ((linha = reader.readLine()) != null){
 
                 //separa a string, transforma em item tudo que está antes do ;, e armazena no array do tipo de string
@@ -51,9 +52,12 @@ public class DespesaRepository {
                 // adiciona na lista
                 listaCarregada.add(novaDespesa);
             }
-        } catch (IOException e) {
+        } catch (FileNotFoundException e){ //se não achar o arquivo (nova execução) não faz nada
+
+        } catch (IOException e) { //em caso de falha externa
             System.out.println("Falha na leitura do arquivo csv!");
         }
+
         // retorna a lista
         return listaCarregada;
     }
