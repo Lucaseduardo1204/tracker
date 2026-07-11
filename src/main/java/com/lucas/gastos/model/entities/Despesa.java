@@ -25,7 +25,7 @@ public class Despesa {
         // Com o throw new IllegalArgumentsException, lança a exceção de argumento ilegal indicando que o valor não pode ser negativo
         // Aqui é checkado o erro e não o acerto
         if (valor == null){
-            throw new IllegalArgumentException("Valor n~ao deve ser nulo");
+            throw new IllegalArgumentException("Valor não deve ser nulo");
         }
 
         if (valor.signum() == -1) {
@@ -48,7 +48,15 @@ public class Despesa {
         this.data = data;
 
         this.categoria = categoria;
+
+        if (descricao == null){
+            throw new IllegalArgumentException("Descrição não pode ser nula!");
+        }
+        if (descricao.contains(";")){
+            throw new IllegalArgumentException("Descrição não pode conter ;");
+        }
         this.descricao = descricao;
+
         this.formaPagamento = formaPagamento;
         this.banco = banco;
     }

@@ -8,11 +8,9 @@ import com.lucas.gastos.model.enums.FormaPagamentoEnum;
 import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.lucas.gastos.Main.criarDespesa;
 
 public class DespesaRepository {
 
@@ -22,18 +20,20 @@ public class DespesaRepository {
 
     public List<Despesa> carregar(){
 
-        List<Despesa> listaCarregada = new ArrayList<>(); //declara lista carregada como uma lista de Despesa
+        //declara lista carregada como uma lista de Despesa
+        List<Despesa> listaCarregada = new ArrayList<>();
 
         //Declara reader como um BufferedReader, ele sera um novo BufferedReader que, como parametro, constroi um novo
         // FileReader que recebe como parametro o nome do arquivo (gastos.csv)
         try (BufferedReader reader = new BufferedReader(new FileReader("gastos.csv"))){
 
-            String linha; //declara linha como string
+            //declara linha como string
+            String linha;
 
             //Enquanto não chegar no fim do arquivo
             while ((linha = reader.readLine()) != null){
 
-                //separa a string, transforma em item tudo que está antes do ;, e armazena no array do tipo de string
+               //separa a string, transforma em item tudo que está antes do ;, e armazena no array do tipo de string
                String[] campos  =  linha.split(";");
 
                 // armazena campo na posição 0 na variável descricao
@@ -52,9 +52,11 @@ public class DespesaRepository {
                 // adiciona na lista
                 listaCarregada.add(novaDespesa);
             }
-        } catch (FileNotFoundException e){ //se não achar o arquivo (nova execução) não faz nada
+        //se não achar o arquivo (nova execução) não faz nada
+        } catch (FileNotFoundException e){
 
-        } catch (IOException e) { //em caso de falha externa
+        } //em caso de falha externa
+        catch (IOException e) {
             System.out.println("Falha na leitura do arquivo csv!");
         }
 
@@ -66,12 +68,16 @@ public class DespesaRepository {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("gastos.csv"))){ // Declara writer do
             // tipo BufferedWriter, como um novo BufferedWriter, como parâmetro recebe um novo FileWriter que escreverá
             // o arquivo, nomeado como gastos.csv
-            for (Despesa despesa : despesas){ //para cada despesa em despesas, linha recebe atributo + ; (definito para o meu csv, podendo tambem ser , ou |)
+
+            //para cada despesa em despesas, linha recebe atributo + ; (definito para o meu csv, podendo tambem ser , ou |)
+            for (Despesa despesa : despesas){
                 String linha = despesa.getDescricao() + ";" + despesa.getValor() + ";"  + despesa.getData() + ";" + despesa.getCategoria() + ";"
                         + despesa.getFormaPagamento() + ";" + despesa.getBanco();
-                writer.write(linha); writer.newLine();      //writer escreve a linha no arquivo e após, cria uma nova linha para a próxima despesa
+                //writer escreve a linha no arquivo e após, cria uma nova linha para a próxima despesa
+                writer.write(linha); writer.newLine();
             }
-        } catch (IOException e) { //caso de errado, pega a exception, do tipo IOException (InputOutput) e exibe o sout na tela
+        } //caso de errado, pega a exception, do tipo IOException (InputOutput) e exibe o sout na tela
+        catch (IOException e) {
             System.out.println("Não foi possível salvar no arquivo: " + e.getMessage());
         }
 

@@ -4,41 +4,51 @@ import com.lucas.gastos.model.entities.Despesa;
 import com.lucas.gastos.model.enums.BancoEnum;
 import com.lucas.gastos.model.enums.CategoriaEnum;
 import com.lucas.gastos.model.enums.FormaPagamentoEnum;
-import com.lucas.gastos.repository.DespesaRepository;
 import com.lucas.gastos.services.GerenciadorDespesas;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
+
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
+        //Instância um gerenciador, do tipo Gerenciador despesa, como um novo GerenciadorDespesas
         GerenciadorDespesas gerenciador = new GerenciadorDespesas();
 
-        DespesaRepository carregarTeste = new DespesaRepository();
-
-        carregarTeste.carregar();
-
+        //para o fim do do-while
         boolean resposta = true;
 
         do {
+            //exibe o menu de seleção
             System.out.println(menuSelecao());
 
+            //lê a opção e armazena na variável opção
             int opcao = sc.nextInt();
+            //limpa o buffer de sc, consumindo o enter
             sc.nextLine();
 
+            //verificação da opção e "decisões" baseadas nelas
             switch (opcao) {
                 case 1:
-                    Despesa nova = criarDespesa(sc); //chama o questionário, passa nosso sc para entrada dos dados, e cria a despesa
-                    gerenciador.adicionarDespesa(nova); //chama o gerenciador e adiciona a despesa na lista criada na classe GerenciadorDespesas
+                    //chama o questionário, passa nosso sc para entrada dos dados, e cria a despesa
+                    Despesa nova = criarDespesa(sc);
+
+                    //chama o gerenciador e adiciona a despesa na lista criada na classe GerenciadorDespesas
+                    gerenciador.adicionarDespesa(nova);
+
+                    //finaliza
                     break;
+
                 case 2:
+                    //chama o método de listar da classe GerenciadorDespesa
                     System.out.println(gerenciador.listar());
+
                     break;
+
                 case 3:
                     System.out.println("Digite o número da despesa a ser removida: ");
                     int despesaARemover = sc.nextInt();
