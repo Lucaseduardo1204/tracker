@@ -63,8 +63,11 @@ public class DespesaRepository {
                     // adiciona na lista
                     listaCarregada.add(novaDespesa);
 
-                }catch (IllegalArgumentException | DateTimeParseException e){   //caso caia na excessão, ignora a linha e a exibe no console com a mensagem
-                    System.out.println("Linha ignorada (dado corrompido): " + linha);
+                }
+                //po se tratar de erros de mesma política, vou agrupar nesse catch separando-os por |
+                catch (IllegalArgumentException | DateTimeParseException e){
+                    //caso caia na excessão, ignora a linha e a exibe no console com a mensagem
+                    System.out.println("Linha ignorada (dado corrompido): " + e.getMessage());
                 }
             }
          //se não achar o arquivo (nova execução) não faz nada
