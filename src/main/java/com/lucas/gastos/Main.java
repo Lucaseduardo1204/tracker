@@ -60,6 +60,15 @@ public class Main {
                     break;
 
                 case 5:
+                    try {
+                        System.out.println(gerenciador.despesaDeMaiorValor());
+                    } catch (IllegalStateException e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+
+
+                case 6:
                     resposta = false;
                     break;
 
@@ -85,7 +94,7 @@ public class Main {
 
     }
 
-    //função responsável pelo quetionário de criação da despesa, o qual deverá ser respondido pelo usuário
+    //função responsável pelo quetionário de criação da despesa, o qual deverá ser respondido pelo usuário5
     public static Despesa criarDespesa(Scanner sc){
         System.out.println("Digite o valor da despesa: ");
         BigDecimal valor = sc.nextBigDecimal();
@@ -123,7 +132,8 @@ public class Main {
                 "\n 2 - Listar Despesas" +
                 "\n 3 - Excluir Despesas " +
                 "\n 4 - Total por categoria" +
-                "\n 5 - Sair";
+                "\n 5 - Despesa com Maior valor " +
+                "\n 6 - Sair";
 
     }
 

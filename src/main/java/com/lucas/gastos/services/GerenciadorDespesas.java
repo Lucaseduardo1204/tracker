@@ -88,5 +88,28 @@ public class GerenciadorDespesas {
         // put = grava SEMPRE (cria ou sobrescreve; sem condição, sem soma)
     }
 
+    // método público que retorna uma despesa
+    public Despesa despesaDeMaiorValor(){
+
+        if (despesas.isEmpty()){
+            //IllegalStateException
+            throw new IllegalStateException("Não há despesas cadastradas");
+        }
+        //cria variavel do tipo despesa e a inicializa com a primeira despesa de despesas
+        Despesa maiorDespesa = despesas.get(0);
+
+        //pra cada despesa em despesas
+        for (Despesa despesa : despesas){
+            // se o valor da despesa, comparado ao valor da maior despesa, for maior que 0
+            // .compareTo() recebe como parametro um valor em BigDecimal, caso retorne positivo o valor que chamou o compareTo, é maior
+            // se retornar negativo, o valor que chamou é menor, se retornar 0 é igual
+            if (despesa.getValor().compareTo(maiorDespesa.getValor()) > 0){
+                // Maior despesa recebe a despesa
+                maiorDespesa = despesa;
+            }
+        }
+        return maiorDespesa;
+    }
+
 
 }
