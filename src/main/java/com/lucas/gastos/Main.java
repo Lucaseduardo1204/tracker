@@ -56,8 +56,13 @@ public class Main {
                     break;
 
                 case 4:
+                    System.out.println(gerenciador.totalPorCategoria());
+                    break;
+
+                case 5:
                     resposta = false;
                     break;
+
 
                 default:
                     System.out.println("Opção inválida, tenta de novo!");
@@ -117,7 +122,9 @@ public class Main {
                 "\n 1 - Adicionar despesa" +
                 "\n 2 - Listar Despesas" +
                 "\n 3 - Excluir Despesas " +
-                "\n 4 - Sair";
+                "\n 4 - Total por categoria" +
+                "\n 5 - Sair";
+
     }
 
 
