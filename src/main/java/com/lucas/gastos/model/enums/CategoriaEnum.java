@@ -7,5 +7,5 @@ public enum CategoriaEnum {
     INVESTIMENTO,
     COMPRAS,
     LAZER,
-    SAUDE
+    SAUDE;
 }

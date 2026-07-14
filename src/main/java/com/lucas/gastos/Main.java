@@ -56,12 +56,12 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.println(gerenciador.totalPorCategoria());
+                    System.out.println(gerenciador.totalPorCategoriaStream());
                     break;
 
                 case 5:
                     try {
-                        System.out.println(gerenciador.despesaDeMaiorValor());
+                        System.out.println(gerenciador.despesaMaiorValorStream());
                     } catch (IllegalStateException e){
                         System.out.println(e.getMessage());
                     }

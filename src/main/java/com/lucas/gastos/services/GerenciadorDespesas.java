@@ -5,10 +5,8 @@ import com.lucas.gastos.model.enums.CategoriaEnum;
 import com.lucas.gastos.repository.DespesaRepository;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class GerenciadorDespesas {
 
@@ -111,5 +109,46 @@ public class GerenciadorDespesas {
         return maiorDespesa;
     }
 
+    public Despesa despesaMaiorValorStream(){
+        // O stream() é um metodo que vai percorrer os itens no nosso exemplo de despesa, ele
+        // vai pegar despesas  e percorrer todos os itens, no .max() ele chama comparator.comparing que vai comparar o valor
+        //  da ultima com a nova e devolver a despesa, o orElseThrow é o que vai verificar, se tiver vazia, lança a exception,
+        // se não, devolve o item pro return
+        //.stream() percorre todos os itens da lista
+        //.max() maior até agora
+        // Comparator.comparing(Despesa::getValor) -> "compare-as pelo valor"
+        // Method reference -> Despesa::getValor -> de cada uma, o valor
+        // .orElsethrow -> abre a caixa: cheia → devolve o conteúdo (alimenta o return); vazia → fabrica e lança a exceção
+        // () -> new IllegalStateException -> uma nova exceção por lambda function (só é executada se o ElseThrow retornar vazio)
+        return despesas.stream()
+                .max(Comparator.comparing(Despesa::getValor))
+                .orElseThrow(() -> new IllegalStateException("Não há despesas cadastradas"));
 
+    }
+
+    // Método público que devolve um Map: chave = categoria, valor = soma acumulada
+    // Faz o mesmo que o TotalPorCategoria() do for, porém com stream()
+    public Map<CategoriaEnum, BigDecimal> totalPorCategoriaStream() {
+
+        // .stream() -> coloca a lista em uma "esteira)
+        return despesas.stream()
+
+                // .collect(...) -> Terminal, pega o que sai da esteira e monta a estrutura final
+                .collect(Collectors.groupingBy(
+
+                        // Primeiro argumento da regra de separação "Olhe a categoria dessa Despesa"
+                        // Method reference: ação, não nome de tipos como CategoriaEnum
+                        Despesa::getCategoria,
+
+                        // Segundo argumento, o que agrupa-los em cada "caixa "
+                        Collectors.reducing(
+                                BigDecimal.ZERO, // Toda soma começa no 0
+                                Despesa::getValor,  // de cada despesa do grupo, o valor
+                                BigDecimal::add)    // vai somando
+                ));
+
+    }
 }
+
+
+
