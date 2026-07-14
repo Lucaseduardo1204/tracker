@@ -58,56 +58,56 @@ public class GerenciadorDespesas {
     // despesa.getCategoria = retorna a categoria
 
     //método publico do qual cria uma tabela hash fazendo com que a categoria seja a "chave" e BigDecimal seja o valor
-    public Map<CategoriaEnum, BigDecimal> totalPorCategoria(){
-
-        //declara uma variável (totalCategoria) do tipo Map<CategoriaEnum, BigDecimal>, como um novo HashMap<>();
-        Map<CategoriaEnum, BigDecimal> totalCategoria = new HashMap<>();
-
-        //para cada despesa na lista de despesas
-        for(Despesa despesa : despesas){
-            //Declara totalPorCategoria como BigDecimal
-            // getOrDefault(chave, valor padrão) -> procura a chave no mapa, se achar te entrega o valor, se não achar, entrega o Plano B no lugar de Null
-            // Ou seja, se no mapa.get(chave) ele não encontrar, retorna null. No mapa.getOrDefault() se não achar, retorna o segundo parâmetro (no caso BigDecimal.ZERO)
-            // .getOrDefault apenas lê, não altera, devolve 0  se não achar a chave
-            BigDecimal totalAtual = totalCategoria.getOrDefault(despesa.getCategoria(), BigDecimal.ZERO);
-
-            //novo total do tipo BigDecimal, recebe o totalPorCategoria mais a despesa.getValor();
-            BigDecimal novoTotal = totalAtual.add(despesa.getValor());
-
-            //Altera a variavel (do tipo Map, new HashMap) totalCategoria a categoria, e o novo valor
-            // .put -> só grava (cria ou sobrescreve, soma é feita antes no .add()
-            totalCategoria.put(despesa.getCategoria(), novoTotal);
-        }
-        return totalCategoria; //retona nosso Map totalCategoria
-
-        // EM Resumo:
-        // mapa nasce vazio; uma chave só passa a existir quando um put cria ela
-        // getOrDefault = pesquisa (SÓ lê); chave ausente → devolve o plano B
-        // put = grava SEMPRE (cria ou sobrescreve; sem condição, sem soma)
-    }
+//    public Map<CategoriaEnum, BigDecimal> totalPorCategoria(){
+//
+//        //declara uma variável (totalCategoria) do tipo Map<CategoriaEnum, BigDecimal>, como um novo HashMap<>();
+//        Map<CategoriaEnum, BigDecimal> totalCategoria = new HashMap<>();
+//
+//        //para cada despesa na lista de despesas
+//        for(Despesa despesa : despesas){
+//            //Declara totalPorCategoria como BigDecimal
+//            // getOrDefault(chave, valor padrão) -> procura a chave no mapa, se achar te entrega o valor, se não achar, entrega o Plano B no lugar de Null
+//            // Ou seja, se no mapa.get(chave) ele não encontrar, retorna null. No mapa.getOrDefault() se não achar, retorna o segundo parâmetro (no caso BigDecimal.ZERO)
+//            // .getOrDefault apenas lê, não altera, devolve 0  se não achar a chave
+//            BigDecimal totalAtual = totalCategoria.getOrDefault(despesa.getCategoria(), BigDecimal.ZERO);
+//
+//            //novo total do tipo BigDecimal, recebe o totalPorCategoria mais a despesa.getValor();
+//            BigDecimal novoTotal = totalAtual.add(despesa.getValor());
+//
+//            //Altera a variavel (do tipo Map, new HashMap) totalCategoria a categoria, e o novo valor
+//            // .put -> só grava (cria ou sobrescreve, soma é feita antes no .add()
+//            totalCategoria.put(despesa.getCategoria(), novoTotal);
+//        }
+//        return totalCategoria; //retona nosso Map totalCategoria
+//
+//        // EM Resumo:
+//        // mapa nasce vazio; uma chave só passa a existir quando um put cria ela
+//        // getOrDefault = pesquisa (SÓ lê); chave ausente → devolve o plano B
+//        // put = grava SEMPRE (cria ou sobrescreve; sem condição, sem soma)
+//    }
 
     // método público que retorna uma despesa
-    public Despesa despesaDeMaiorValor(){
-
-        if (despesas.isEmpty()){
-            //IllegalStateException
-            throw new IllegalStateException("Não há despesas cadastradas");
-        }
-        //cria variavel do tipo despesa e a inicializa com a primeira despesa de despesas
-        Despesa maiorDespesa = despesas.get(0);
-
-        //pra cada despesa em despesas
-        for (Despesa despesa : despesas){
-            // se o valor da despesa, comparado ao valor da maior despesa, for maior que 0
-            // .compareTo() recebe como parametro um valor em BigDecimal, caso retorne positivo o valor que chamou o compareTo, é maior
-            // se retornar negativo, o valor que chamou é menor, se retornar 0 é igual
-            if (despesa.getValor().compareTo(maiorDespesa.getValor()) > 0){
-                // Maior despesa recebe a despesa
-                maiorDespesa = despesa;
-            }
-        }
-        return maiorDespesa;
-    }
+//    public Despesa despesaDeMaiorValor(){
+//
+//        if (despesas.isEmpty()){
+//            //IllegalStateException
+//            throw new IllegalStateException("Não há despesas cadastradas");
+//        }
+//        //cria variavel do tipo despesa e a inicializa com a primeira despesa de despesas
+//        Despesa maiorDespesa = despesas.get(0);
+//
+//        //pra cada despesa em despesas
+//        for (Despesa despesa : despesas){
+//            // se o valor da despesa, comparado ao valor da maior despesa, for maior que 0
+//            // .compareTo() recebe como parametro um valor em BigDecimal, caso retorne positivo o valor que chamou o compareTo, é maior
+//            // se retornar negativo, o valor que chamou é menor, se retornar 0 é igual
+//            if (despesa.getValor().compareTo(maiorDespesa.getValor()) > 0){
+//                // Maior despesa recebe a despesa
+//                maiorDespesa = despesa;
+//            }
+//        }
+//        return maiorDespesa;
+//    }
 
     public Despesa despesaMaiorValorStream(){
         // O stream() é um metodo que vai percorrer os itens no nosso exemplo de despesa, ele
